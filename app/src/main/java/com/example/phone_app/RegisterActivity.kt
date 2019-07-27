@@ -3,6 +3,11 @@ package com.example.phone_app
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -15,7 +20,41 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
-    }
-   // btn_register
+        btn_register.setOnClickListener {
+            if(password.text.toString().equals(confirmpassword.text.toString())){
+                val SignUpUrl = "http://192.168.1.2/e_com/present_json_array.php?email="+email.text.toString()+
+                        "&username="+name.text.toString()+"&password="+password.text.toString()
 
+                val requestQ = Volley.newRequestQueue(this@RegisterActivity)
+                val stringRequest = StringRequest(Request.Method.GET,SignUpUrl,Response.Listener{ response ->
+                    if(response.equals("A user with this email Addres already exists"))
+                        {
+                            createDialog(response)
+                        }else {
+                        createDialog(response)
+                    }
+
+
+
+
+                },Response.ErrorListener { error ->
+                    createDialog(error.message.toString())
+                })
+                requestQ.add(stringRequest)
+
+            }else{
+                createDialog("Password Mismatch")
+            }
+
+        }
+
+    }
+
+   // btn_register
+    private fun createDialog(message: String ) {
+       val dialogBuilder = AlertDialog.Builder(this)
+       dialogBuilder.setTitle("Alert")
+       dialogBuilder.setMessage(message)
+       dialogBuilder.create().show()
+    }
 }
