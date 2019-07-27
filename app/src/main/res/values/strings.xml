@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Phone-App</string>
+    <string name="title_activity_main_view">MainViewActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_shop">Shop</string>
+    <string name="title_profile">Profile</string>
 </resources>
