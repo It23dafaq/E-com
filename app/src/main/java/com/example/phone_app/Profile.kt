@@ -1,6 +1,7 @@
 package com.example.phone_app
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -34,6 +35,7 @@ class Profile : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
+
     }
 
 }

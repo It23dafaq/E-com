@@ -24,7 +24,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         login_btn.setOnClickListener {
+           // Person.email = emailLogin.text.toString()
             val intent = Intent(this, MainViewActivity::class.java)
+            intent.putExtra("email", emailLogin.text)
             startActivity(intent)
 
             val loginUrl="http://192.168.1.2/e_com/present_json_array.php?email="+emailLogin.text.toString()+
