@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
             intent.putExtra("email", emailLogin.text)
             startActivity(intent)
 
-            val loginUrl="http://192.168.1.2/e_com/present_json_array.php?email="+emailLogin.text.toString()+
+            val loginUrl="https://rectifiable-merchan.000webhostapp.com/e_com/login_app_user.php?email="+emailLogin.text.toString()+
                     "&password="+passLogin.text.toString()
 
             val requestQ = Volley.newRequestQueue(this@LoginActivity)

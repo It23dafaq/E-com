@@ -8,7 +8,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.profile_fragment.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class Home : Fragment() {
@@ -38,9 +42,11 @@ class Home : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
+
         val model = ViewModelProviders.of(this)[HomeViewModel::class.java]
         model.getUsers().observe(this, Observer<List<Products>>{ users ->
             // update UI
+            test.text=users.toString()
         })
     }
 

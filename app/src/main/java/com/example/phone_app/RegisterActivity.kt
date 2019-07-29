@@ -22,7 +22,7 @@ class RegisterActivity : AppCompatActivity() {
         }
         btn_register.setOnClickListener {
             if(password.text.toString().equals(confirmpassword.text.toString())){
-                val SignUpUrl = "http://192.168.1.2/e_com/present_json_array.php?email="+email.text.toString()+
+                val SignUpUrl = "https://rectifiable-merchan.000webhostapp.com/e_com/join_new_user.php?email="+email.text.toString()+
                         "&username="+name.text.toString()+"&password="+password.text.toString()
 
                 val requestQ = Volley.newRequestQueue(this@RegisterActivity)
