@@ -1,12 +1,11 @@
 package com.example.phone_app
 
+import android.arch.persistence.room.Entity
 import com.google.gson.annotations.SerializedName
-import kotlinx.coroutines.Deferred
-import okhttp3.Response
-import retrofit2.http.GET
 
 
 
+@Entity(tableName = "products")
 data class Products(
 
 
@@ -16,6 +15,6 @@ data class Products(
     @SerializedName("name")
     val name: String,
     @SerializedName("price")
-    val price: Int
+    val price: Float
 
 )
