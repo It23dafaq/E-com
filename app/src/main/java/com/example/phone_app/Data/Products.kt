@@ -1,6 +1,7 @@
-package com.example.phone_app
+package com.example.phone_app.Data
 
 import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
@@ -11,6 +12,7 @@ data class Products(
 
 
     @SerializedName("id")
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     @SerializedName("name")
     val name: String,

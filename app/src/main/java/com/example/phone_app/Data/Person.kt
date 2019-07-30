@@ -1,4 +1,4 @@
-package com.example.phone_app
+package com.example.phone_app.Data
 
 class Person {
 

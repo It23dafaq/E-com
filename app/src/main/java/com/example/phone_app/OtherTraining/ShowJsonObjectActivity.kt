@@ -1,4 +1,4 @@
-package com.example.phone_app
+package com.example.phone_app.OtherTraining
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.phone_app.R
 import kotlinx.android.synthetic.main.activity_show_json_object.*
 
 class ShowJsonObjectActivity : AppCompatActivity() {

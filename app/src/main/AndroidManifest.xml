@@ -15,18 +15,18 @@
                 android:name=".MainViewActivity"
                 android:label="@string/title_activity_main_view">
         </activity>
-        <activity android:name=".RegisterActivity">
+        <activity android:name=".UI.RegisterActivity">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".UI.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ShowAllJSON">
+        <activity android:name=".OtherTraining.ShowAllJSON">
         </activity>
-        <activity android:name=".ShowJsonObjectActivity">
+        <activity android:name=".OtherTraining.ShowJsonObjectActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

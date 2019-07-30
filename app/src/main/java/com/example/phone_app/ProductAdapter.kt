@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.phone_app.Data.Products
 import kotlinx.android.synthetic.main.products_layout.view.*
 
 class ProductAdapter(val phones: List<Products>) : RecyclerView.Adapter<ProductAdapter.MovieViewHolder>() {
