@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,7 +49,14 @@ class Home : Fragment() {
         val productNetworkDataSource = ProductNetworkDataSourceImpl(apiServic)
 
         productNetworkDataSource.downloadProduct.observe(this, Observer {
-            textView4.text= it.toString()
+            //textView4.text= it.toString()
+
+                 val adapter = ProductAdapter(it!!)
+                recyclerproducts.adapter = adapter
+                recyclerproducts.layoutManager = LinearLayoutManager(context!!)
+               recyclerproducts.layoutManager.isAutoMeasureEnabled
+                   //  textView4.text=it.toString()
+
         })
 
         GlobalScope.launch(Dispatchers.Main) {

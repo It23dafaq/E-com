@@ -9,6 +9,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.phone_app.Data.Person
 import com.example.phone_app.MainViewActivity
 import com.example.phone_app.R
 import kotlinx.android.synthetic.main.activity_login.*
@@ -24,9 +25,9 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         login_btn.setOnClickListener {
-           // Person.email = emailLogin.text.toString()
+            Person.email = emailLogin.text.toString()
             val intent = Intent(this, MainViewActivity::class.java)
-            intent.putExtra("email", emailLogin.text)
+            //intent.putExtra("email", emailLogin.text)
             startActivity(intent)
 
             val loginUrl="https://rectifiable-merchan.000webhostapp.com/e_com/login_app_user.php?email="+emailLogin.text.toString()+
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
             val stringRequest = StringRequest(Request.Method.GET,loginUrl, Response.Listener {
                     response ->
                 if(response.equals("The user does exist")){
-                    Toast.makeText(this@LoginActivity,response,Toast.LENGTH_SHORT)
+                    Toast.makeText(this@LoginActivity,response,Toast.LENGTH_SHORT).show()
                 }else{
                     createDialog(response)
                 }

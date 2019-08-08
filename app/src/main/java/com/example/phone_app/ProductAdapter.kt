@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.phone_app.Data.Products
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.products_layout.view.*
 
 class ProductAdapter(val phones: List<Products>) : RecyclerView.Adapter<ProductAdapter.MovieViewHolder>() {
@@ -24,6 +25,8 @@ class ProductAdapter(val phones: List<Products>) : RecyclerView.Adapter<ProductA
       //  holder.view.id = movie.id
         holder.view.phoneName.text = movie.name
         holder.view.price.text = movie.price.toString()
+       val imageView = holder.view.imageView6
+        Picasso.get().load(movie.picture).resize(150,300).into(imageView)
       //  picture
         //  holder.view.textViewType.text = movie.type
       //  description
