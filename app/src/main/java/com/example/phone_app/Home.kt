@@ -1,5 +1,6 @@
 package com.example.phone_app
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.phone_app.Data.Products
 import com.example.phone_app.Network.ConnectivityInterceptorImpl
 import com.example.phone_app.Network.ProductApi
 import com.example.phone_app.Network.ProductNetworkDataSource
@@ -22,7 +24,7 @@ class Home : Fragment() {
 
 
     companion object {
-
+        var cachedList:MutableList<Products> = ArrayList()
         @JvmStatic
         fun newInstance() =
             Home().apply {
@@ -33,7 +35,7 @@ class Home : Fragment() {
     }
 
     private lateinit var viewModel: HomeViewModel
-
+//    private val cachedList: LiveData<List<Products>> = List<Products>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,15 +51,20 @@ class Home : Fragment() {
         val productNetworkDataSource = ProductNetworkDataSourceImpl(apiServic)
 
         productNetworkDataSource.downloadProduct.observe(this, Observer {
-            //textView4.text= it.toString()
 
-                 val adapter = ProductAdapter(it!!)
-                recyclerproducts.adapter = adapter
+                //textView4.text= it.toString()
+
+
+                val adapter = ProductAdapter(cachedList)
+            recyclerproducts.adapter = adapter
                 recyclerproducts.layoutManager = LinearLayoutManager(context!!)
-               recyclerproducts.layoutManager.isAutoMeasureEnabled
-                   //  textView4.text=it.toString()
+                recyclerproducts.layoutManager.isAutoMeasureEnabled
+                //  textView4.text=it.toString()
+            cachedList.addAll(it!!)
 
         })
+
+
 
         GlobalScope.launch(Dispatchers.Main) {
             productNetworkDataSource.fetchCurrentWeather()
