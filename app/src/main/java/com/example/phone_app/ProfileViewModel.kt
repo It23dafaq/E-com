@@ -1,12 +1,15 @@
 package com.example.phone_app
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel;
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.example.phone_app.Data.Person
 import com.example.phone_app.Data.Products
+import com.example.phone_app.UI.Adapters.HomeController
+import com.example.phone_app.UI.ProfileController
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(private val profileController: ProfileController) : ScopedViewModel(){
     // TODO: Implement the ViewModel
     private val users: MutableLiveData<Person>  by lazy {
         MutableLiveData<Person>().also {

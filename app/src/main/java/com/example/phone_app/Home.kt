@@ -1,36 +1,70 @@
 package com.example.phone_app
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
+
+
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import android.os.Debug
+
+
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+
+
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phone_app.Data.Products
 import com.example.phone_app.Network.ConnectivityInterceptorImpl
 import com.example.phone_app.Network.ProductApi
-import com.example.phone_app.Network.ProductNetworkDataSource
 import com.example.phone_app.Network.ProductNetworkDataSourceImpl
+import com.example.phone_app.UI.Adapters.ProductAdapter
+import com.example.phone_app.UI.BaseFragment
+import com.example.phone_app.UI.HomeViewModelFactory
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
+import org.kodein.di.KodeinAware
 
-class Home : Fragment() {
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
+
+
+
+
+class Home : BaseFragment(),KodeinAware {
+    override fun layoutIname(): String {
+        return "LoginFragment"
+    }
+
+
+    var cachedList:MutableList<Products> = ArrayList()
+
+
+    override val kodein by closestKodein()
+
+        /* activity specific bindings */
+        private val viewModelFactory: HomeViewModelFactory by instance()
+
+
 
 
     companion object {
-        var cachedList:MutableList<Products> = ArrayList()
+
+         var shop:MutableList<Products> = ArrayList()
+
         @JvmStatic
         fun newInstance() =
             Home().apply {
                 arguments = Bundle().apply {
-                    // putString(ARG_PARAM1, param1)
-                }
+                 putParcelableArray("da", shop.toTypedArray())
+
+                 }
+
             }
     }
 
@@ -45,21 +79,27 @@ class Home : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,viewModelFactory).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
-      val apiServic = ProductApi(ConnectivityInterceptorImpl(this.context!!))
-        val productNetworkDataSource = ProductNetworkDataSourceImpl(apiServic)
+        viewModel.getUsers()
+                val apiServic = ProductApi(ConnectivityInterceptorImpl(this.context!!))
+                val productNetworkDataSource = ProductNetworkDataSourceImpl(apiServic)
 
         productNetworkDataSource.downloadProduct.observe(this, Observer {
 
-                //textView4.text= it.toString()
+            //textView4.text= it.toString()
 
 
-                val adapter = ProductAdapter(cachedList)
+            val adapter = ProductAdapter(cachedList) { position ->
+                shop.addAll(listOf(position))
+
+
+            }
             recyclerproducts.adapter = adapter
-                recyclerproducts.layoutManager = LinearLayoutManager(context!!)
-                recyclerproducts.layoutManager.isAutoMeasureEnabled
-                //  textView4.text=it.toString()
+            recyclerproducts.layoutManager = LinearLayoutManager(context!!)
+
+
+            //  textView4.text=it.toString()
             cachedList.addAll(it!!)
 
         })
@@ -69,6 +109,7 @@ class Home : Fragment() {
         GlobalScope.launch(Dispatchers.Main) {
             productNetworkDataSource.fetchCurrentWeather()
         }
+
 
     }
 

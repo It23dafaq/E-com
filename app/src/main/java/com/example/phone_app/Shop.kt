@@ -1,18 +1,27 @@
 package com.example.phone_app
 
-import android.arch.lifecycle.ViewModelProviders
+
+import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.phone_app.Data.Products
 import com.example.phone_app.UI.Adapters.cartAdapter
+import com.example.phone_app.UI.ShopViewModelFactory
 import kotlinx.android.synthetic.main.shop_fragment.*
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 
 
-class Shop : Fragment() {
-
+class Shop : Fragment() , KodeinAware {
+    override val kodein by closestKodein()
+    private val viewModelFactory: ShopViewModelFactory by instance()
     companion object {
 
         @JvmStatic
@@ -33,16 +42,25 @@ class Shop : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.shop_fragment, container, false)
+
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ShopViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,viewModelFactory).get(ShopViewModel::class.java)
         // TODO: Use the ViewModel
+       // val bundle = arguments
 
-        val adapter = cartAdapter(Home.cachedList)
-        shopcart.adapter=adapter
-            shopcart.layoutManager = LinearLayoutManager(context!!)
+        //   val cartArray: List<Products> = bundle!!.getParcelableArrayList<Products>("da")
+           val adapter = cartAdapter(Home.shop)
+           shopcart.adapter=adapter
+           shopcart.layoutManager = LinearLayoutManager(context!!)
+
+
+
+
+
     }
 
 }

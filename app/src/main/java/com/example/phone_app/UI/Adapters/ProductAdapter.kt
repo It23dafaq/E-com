@@ -1,14 +1,16 @@
-package com.example.phone_app
+package com.example.phone_app.UI.Adapters
 
-import android.support.v7.widget.RecyclerView
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.example.phone_app.Data.Products
+import com.example.phone_app.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.products_layout.view.*
 
-class ProductAdapter(val phones: List<Products>) : RecyclerView.Adapter<ProductAdapter.MovieViewHolder>() {
+class ProductAdapter(val phones: List<Products>, val clickListener: (Products) -> Unit) : RecyclerView.Adapter<ProductAdapter.MovieViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -33,7 +35,11 @@ class ProductAdapter(val phones: List<Products>) : RecyclerView.Adapter<ProductA
         //  holder.view.textViewRating.text = movie.rating
 
        // holder.view.textViewIsNew.visibility = if(movie.isNew == 1) View.VISIBLE else View.INVISIBLE
+          holder.view.add_cart.setOnClickListener {
+              clickListener(movie)
 
+
+          }
 
     }
 

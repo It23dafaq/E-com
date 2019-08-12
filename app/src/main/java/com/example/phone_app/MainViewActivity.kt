@@ -3,9 +3,11 @@ package com.example.phone_app
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.BottomNavigationView
-import android.support.v7.app.AppCompatActivity
+
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainViewActivity : AppCompatActivity() {
     companion object {
@@ -51,7 +53,7 @@ class MainViewActivity : AppCompatActivity() {
 
     private fun loadFragment(itemId: Int) {
         val tag = itemId.toString()
-        var fragment = supportFragmentManager.findFragmentByTag(tag) ?: when (itemId) {
+        val fragment = supportFragmentManager.findFragmentByTag(tag) ?: when (itemId) {
             R.id.nav_home -> {
                 Home.newInstance()
             }
@@ -70,7 +72,7 @@ class MainViewActivity : AppCompatActivity() {
         if (fragment != null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.fragmentContainer, fragment, tag)
+                .replace(R.id.fragmentContainer, fragment as Fragment, tag)
                 .commit()
         }
     }

@@ -1,6 +1,7 @@
 package com.example.phone_app.Network
 
-import android.arch.lifecycle.LiveData
+
+import androidx.lifecycle.LiveData
 import com.example.phone_app.Data.Products
 
 interface ProductNetworkDataSource {

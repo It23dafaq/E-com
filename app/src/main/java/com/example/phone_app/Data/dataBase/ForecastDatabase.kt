@@ -1,9 +1,10 @@
 package com.example.phone_app.Data.dataBase
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.Room
-import android.arch.persistence.room.RoomDatabase
+
 import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.example.phone_app.Data.Products
 import com.example.phone_app.Data.dataBase.Localized.dbAccessObject.ProductsDao
 
