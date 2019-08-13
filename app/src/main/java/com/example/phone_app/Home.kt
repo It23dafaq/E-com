@@ -80,38 +80,53 @@ class Home : BaseFragment(),KodeinAware {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this,viewModelFactory).get(HomeViewModel::class.java)
-        // TODO: Use the ViewModel
         viewModel.getUsers()
-                val apiServic = ProductApi(ConnectivityInterceptorImpl(this.context!!))
-                val productNetworkDataSource = ProductNetworkDataSourceImpl(apiServic)
 
-        productNetworkDataSource.downloadProduct.observe(this, Observer {
+        val apiServic = ProductApi(ConnectivityInterceptorImpl(this.context!!))
+        val productNetworkDataSource = ProductNetworkDataSourceImpl(apiServic)
+        viewModel.products.observe(this, Observer {
 
-            //textView4.text= it.toString()
-
-
-            val adapter = ProductAdapter(cachedList) { position ->
-                shop.addAll(listOf(position))
-
-
+            val adapter = ProductAdapter(it){
+                    position ->viewModel.addProduct(position)
             }
             recyclerproducts.adapter = adapter
-            recyclerproducts.layoutManager = LinearLayoutManager(context!!)
+            recyclerproducts.layoutManager = LinearLayoutManager(this.context)
 
 
             //  textView4.text=it.toString()
-            cachedList.addAll(it!!)
-
+            //cachedList.addAll(listOf(it))
         })
+        var dad: String = ""
+        /*
+          productNetworkDataSource.downloadProduct.observe(this, Observer {
+
+              //textView4.text= it.toString()
 
 
+              val adapter = ProductAdapter(cachedList) { position ->
+                  shop.addAll(listOf(position))
 
-        GlobalScope.launch(Dispatchers.Main) {
-            productNetworkDataSource.fetchCurrentWeather()
-        }
+
+              }
+              recyclerproducts.adapter = adapter
+              recyclerproducts.layoutManager = LinearLayoutManager(this.context)
+
+
+              //  textView4.text=it.toString()
+              cachedList.addAll(it!!)
+
+          })
+  */
+
+
+        //   GlobalScope.launch(Dispatchers.Main) {
+        //       productNetworkDataSource.fetchCurrentWeather()
+        //   }
 
 
     }
 
+    }
 
-}
+
+

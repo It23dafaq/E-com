@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.phone_app.Data.Products
 import com.example.phone_app.UI.Adapters.cartAdapter
+import com.example.phone_app.UI.HomeViewModelFactory
 import com.example.phone_app.UI.ShopViewModelFactory
 import kotlinx.android.synthetic.main.shop_fragment.*
 import org.kodein.di.KodeinAware
@@ -21,7 +22,7 @@ import org.kodein.di.generic.instance
 
 class Shop : Fragment() , KodeinAware {
     override val kodein by closestKodein()
-    private val viewModelFactory: ShopViewModelFactory by instance()
+    private val viewModelFactory: HomeViewModelFactory by instance()
     companion object {
 
         @JvmStatic
@@ -35,7 +36,7 @@ class Shop : Fragment() , KodeinAware {
 
 
 
-    private lateinit var viewModel: ShopViewModel
+    private lateinit var viewModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,14 +49,15 @@ class Shop : Fragment() , KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this,viewModelFactory).get(ShopViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,viewModelFactory).get(HomeViewModel::class.java)
         // TODO: Use the ViewModel
        // val bundle = arguments
 
         //   val cartArray: List<Products> = bundle!!.getParcelableArrayList<Products>("da")
-           val adapter = cartAdapter(Home.shop)
-           shopcart.adapter=adapter
-           shopcart.layoutManager = LinearLayoutManager(context!!)
+        val cart = viewModel.getProduct()
+        val adapter = cartAdapter(cart)
+        shopcart.adapter=adapter
+        shopcart.layoutManager = LinearLayoutManager(context!!)
 
 
 
