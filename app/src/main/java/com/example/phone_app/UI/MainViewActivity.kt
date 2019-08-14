@@ -1,4 +1,4 @@
-package com.example.phone_app
+package com.example.phone_app.UI
 
 import android.content.Context
 import android.content.Intent
@@ -7,6 +7,10 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.phone_app.Home
+import com.example.phone_app.Profile
+import com.example.phone_app.R
+import com.example.phone_app.Shop
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainViewActivity : AppCompatActivity() {
@@ -60,7 +64,7 @@ class MainViewActivity : AppCompatActivity() {
             R.id.nav_cart -> {
                 Shop.newInstance()
             }
-            R.id.nav_profile-> {
+            R.id.nav_profile -> {
                 Profile.newInstance()
             }
             else -> {

@@ -1,11 +1,11 @@
-package com.example.phone_app.UI
+package com.example.phone_app.UI.Controllers
 
 import com.example.phone_app.Network.ProductApi
 
 
 class ProfileControllerIml(
     private val productService: ProductApi
-):ProfileController {
+): ProfileController {
     override suspend fun getUsers() {
         productService.getProducts().await()
     }

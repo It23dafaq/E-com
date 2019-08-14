@@ -12,7 +12,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.phone_app.Data.Person
-import com.example.phone_app.MainViewActivity
 import com.example.phone_app.R
 import kotlinx.android.synthetic.main.activity_login.*
 

@@ -1,12 +1,11 @@
-package com.example.phone_app
+package com.example.phone_app.UI.ViewModels
 
 
 
 import com.example.phone_app.Data.Products
-import com.example.phone_app.UI.Adapters.HomeController
-import timber.log.Timber
+import com.example.phone_app.ScopedViewModel
+import com.example.phone_app.UI.Controllers.HomeController
 import java.math.BigDecimal
-import java.math.MathContext
 
 var addcart : MutableList<Products> = ArrayList()
 class HomeViewModel(private val homeController: HomeController) : ScopedViewModel() {

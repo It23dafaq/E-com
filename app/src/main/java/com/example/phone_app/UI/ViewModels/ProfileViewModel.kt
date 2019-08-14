@@ -1,13 +1,11 @@
-package com.example.phone_app
+package com.example.phone_app.UI.ViewModels
 
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.phone_app.Data.Person
-import com.example.phone_app.Data.Products
-import com.example.phone_app.UI.Adapters.HomeController
-import com.example.phone_app.UI.ProfileController
+import com.example.phone_app.ScopedViewModel
+import com.example.phone_app.UI.Controllers.ProfileController
 
 class ProfileViewModel(private val profileController: ProfileController) : ScopedViewModel(){
     // TODO: Implement the ViewModel

@@ -3,14 +3,11 @@ package com.example.phone_app
 
 
 import android.os.Bundle
-import android.os.Debug
 
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 
 
@@ -22,11 +19,9 @@ import com.example.phone_app.Network.ProductApi
 import com.example.phone_app.Network.ProductNetworkDataSourceImpl
 import com.example.phone_app.UI.Adapters.ProductAdapter
 import com.example.phone_app.UI.BaseFragment
-import com.example.phone_app.UI.HomeViewModelFactory
+import com.example.phone_app.UI.ViewModelFactory.HomeViewModelFactory
+import com.example.phone_app.UI.ViewModels.HomeViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 import org.kodein.di.KodeinAware
 

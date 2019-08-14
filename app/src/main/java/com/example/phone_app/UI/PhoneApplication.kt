@@ -4,8 +4,10 @@ import android.app.Application
 import com.example.phone_app.Network.ConnectivityInterceptor
 import com.example.phone_app.Network.ConnectivityInterceptorImpl
 import com.example.phone_app.Network.ProductApi
-import com.example.phone_app.UI.Adapters.HomeController
-import com.example.phone_app.UI.Adapters.HomeControllerIml
+import com.example.phone_app.UI.Controllers.*
+import com.example.phone_app.UI.ViewModelFactory.HomeViewModelFactory
+import com.example.phone_app.UI.ViewModelFactory.ProfileViewModelFactory
+import com.example.phone_app.UI.ViewModelFactory.ShopViewModelFactory
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -23,9 +25,21 @@ class PhoneApplication:Application(), KodeinAware {
         //Service
         bind() from singleton { ProductApi(instance()) }
         //controller
-        bind<HomeController>() with singleton { HomeControllerIml(instance())}
-        bind<ShopController>() with singleton { ShopControllerImpl(instance())}
-        bind<ProfileController>() with singleton { ProfileControllerIml (instance())}
+        bind<HomeController>() with singleton {
+            HomeControllerIml(
+                instance()
+            )
+        }
+        bind<ShopController>() with singleton {
+            ShopControllerImpl(
+                instance()
+            )
+        }
+        bind<ProfileController>() with singleton {
+            ProfileControllerIml(
+                instance()
+            )
+        }
         //viewModels
         bind() from provider { HomeViewModelFactory(instance()) }
         bind() from provider { ProfileViewModelFactory(instance()) }
