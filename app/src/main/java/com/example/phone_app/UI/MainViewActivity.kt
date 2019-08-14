@@ -51,7 +51,7 @@ class MainViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_view)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
-        textMessage = findViewById(R.id.message)
+       
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 
