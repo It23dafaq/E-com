@@ -20,6 +20,9 @@ class HomeViewModel(private val homeController: HomeController) : ScopedViewMode
 
 
     }
+    fun GetPrice():Double{
+        return  addcart.sumByDouble { it.price.toDouble() }
+    }
     fun  getProduct(): MutableList<Products> {
         return addcart
 

@@ -26,7 +26,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shopcart" android:layout_marginBottom="90dp"
-            app:layout_constraintVertical_bias="0.81"/>
+            app:layout_constraintVertical_bias="0.81"
+           />
     <androidx.recyclerview.widget.RecyclerView
 
             android:layout_width="363dp"
