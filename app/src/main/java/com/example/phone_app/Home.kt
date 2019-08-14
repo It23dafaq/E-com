@@ -61,7 +61,7 @@ class Home : BaseFragment(),KodeinAware {
         fun newInstance() =
             Home().apply {
                 arguments = Bundle().apply {
-                 putParcelableArray("da", shop.toTypedArray())
+
 
                  }
 

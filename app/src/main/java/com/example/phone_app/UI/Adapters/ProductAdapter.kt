@@ -29,6 +29,11 @@ class ProductAdapter(val phones: List<Products>, val clickListener: (Products) -
         holder.view.price.text = movie.price.toString()
        val imageView = holder.view.imageView6
         Picasso.get().load(movie.picture).resize(150,300).into(imageView)
+        if(imageView.isSelected) {
+            Picasso.get().load(movie.picture).resize(250,350).into(imageView)
+        }else{
+            Picasso.get().load(movie.picture).resize(150,300).into(imageView)
+        }
       //  picture
         //  holder.view.textViewType.text = movie.type
       //  description

@@ -77,7 +77,7 @@ class Shop : Fragment() , KodeinAware {
          builder.setTitle("Payment")
 
          // Display a message on alert dialog
-         builder.setMessage("The total price is"+totalPayment.toString()+"do you want to continue ?")
+         builder.setMessage("The total price is "+" "+totalPayment.toString()+" "+"do you want to continue ?")
 
          // Set a positive button and its click listener on alert dialog
          builder.setPositiveButton("YES"){dialog, which ->

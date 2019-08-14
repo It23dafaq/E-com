@@ -21,37 +21,9 @@ data class Products(
     @SerializedName("name")
     val name: String,
     @SerializedName("price")
-    val price: Float,
+    val price: Double,
     @SerializedName("Picture")
     val picture: String
 
-):Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString(),
-        parcel.readFloat(),
-        parcel.readString()
-    ) {
-    }
+)
 
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-
-        parcel.writeString(name)
-        parcel.writeFloat(price)
-
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Products> {
-        override fun createFromParcel(parcel: Parcel): Products {
-            return Products(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Products?> {
-            return arrayOfNulls(size)
-        }
-    }
-}

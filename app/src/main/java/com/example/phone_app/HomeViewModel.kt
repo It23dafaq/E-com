@@ -5,6 +5,8 @@ package com.example.phone_app
 import com.example.phone_app.Data.Products
 import com.example.phone_app.UI.Adapters.HomeController
 import timber.log.Timber
+import java.math.BigDecimal
+import java.math.MathContext
 
 var addcart : MutableList<Products> = ArrayList()
 class HomeViewModel(private val homeController: HomeController) : ScopedViewModel() {
@@ -20,8 +22,8 @@ class HomeViewModel(private val homeController: HomeController) : ScopedViewMode
 
 
     }
-    fun GetPrice():Double{
-        return  addcart.sumByDouble { it.price.toDouble() }
+    fun GetPrice():BigDecimal{
+        return  addcart.sumByDouble { it.price}.toBigDecimal()
     }
     fun  getProduct(): MutableList<Products> {
         return addcart
