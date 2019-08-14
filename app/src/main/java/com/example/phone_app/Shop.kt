@@ -55,7 +55,11 @@ class Shop : Fragment() , KodeinAware {
 
         //   val cartArray: List<Products> = bundle!!.getParcelableArrayList<Products>("da")
         val cart = viewModel.getProduct()
-        val adapter = cartAdapter(cart)
+        val adapter = cartAdapter(cart){
+            viewModel.RemoveProduct(it)
+
+        }
+
         shopcart.adapter=adapter
         shopcart.layoutManager = LinearLayoutManager(context!!)
 

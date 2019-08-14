@@ -15,6 +15,11 @@ class HomeViewModel(private val homeController: HomeController) : ScopedViewMode
         addcart.add(list)
 
     }
+    fun RemoveProduct(id: Int) {
+        addcart.removeAt(id)
+
+
+    }
     fun  getProduct(): MutableList<Products> {
         return addcart
 

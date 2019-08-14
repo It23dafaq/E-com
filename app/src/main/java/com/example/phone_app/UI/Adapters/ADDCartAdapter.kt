@@ -9,7 +9,7 @@ import com.example.phone_app.Data.Products
 import com.example.phone_app.R
 import kotlinx.android.synthetic.main.fragment_cart_view.view.*
 
-class cartAdapter(val phones: List<Products>): RecyclerView.Adapter<cartAdapter.CartViewHolder>() {
+class cartAdapter(val phones: List<Products>,  val clickListener: (Int) -> Unit): RecyclerView.Adapter<cartAdapter.CartViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -27,7 +27,10 @@ class cartAdapter(val phones: List<Products>): RecyclerView.Adapter<cartAdapter.
         holder.view.phone_cart.text = movie.name
         holder.view.price_cart.text = movie.price.toString()
 
-
+       holder.view.imageView4.setOnClickListener {
+           clickListener (position)
+           notifyItemRemoved(position)
+       }
         //  holder.view.textViewType.text = movie.type
         //  description
         //  holder.view.textViewRating.text = movie.rating
