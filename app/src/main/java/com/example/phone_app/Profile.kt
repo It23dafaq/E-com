@@ -107,6 +107,8 @@ class Profile : Fragment(),KodeinAware {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
             imageView2.setImageURI(data?.data)
+            imageView2.layoutParams.height = 400
+            imageView2.layoutParams.width = 450
         }
     }
     }
