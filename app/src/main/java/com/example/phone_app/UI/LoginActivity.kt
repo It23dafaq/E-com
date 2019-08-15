@@ -23,12 +23,14 @@ class LoginActivity : AppCompatActivity() {
 
         goRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
+
             startActivity(intent)
         }
         login_btn.setOnClickListener {
+
             Person.email = emailLogin.text.toString()
             val intent = Intent(this, MainViewActivity::class.java)
-            //intent.putExtra("email", emailLogin.text)
+            intent.putExtra("email", emailLogin.text)
             startActivity(intent)
 
             val loginUrl="https://rectifiable-merchan.000webhostapp.com/e_com/login_app_user.php?email="+emailLogin.text.toString()+

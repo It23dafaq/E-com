@@ -3,6 +3,7 @@ package com.example.phone_app
 
 import android.Manifest
 import android.app.Activity
+import android.app.Person
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -45,13 +46,14 @@ class Profile : Fragment(),KodeinAware {
                 }
             }
     }
-
+    var strtext: String = ""
     private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return inflater.inflate(R.layout.profile_fragment, container, false)
     }
 
@@ -59,6 +61,7 @@ class Profile : Fragment(),KodeinAware {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this,viewModelFactory).get(ProfileViewModel::class.java)
         // TODO: Use the ViewModel
+        UserName.text=com.example.phone_app.Data.Person.email
          viewModel.getUsers().observe(this, Observer {
              UserName.text = it.toString()
          })
@@ -109,6 +112,7 @@ class Profile : Fragment(),KodeinAware {
             imageView2.setImageURI(data?.data)
             imageView2.layoutParams.height = 400
             imageView2.layoutParams.width = 450
+            imageView2.requestLayout()
         }
     }
     }
