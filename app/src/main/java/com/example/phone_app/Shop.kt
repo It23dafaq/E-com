@@ -63,7 +63,11 @@ class Shop : Fragment() , KodeinAware {
 
         shopcart.adapter=adapter
         shopcart.layoutManager = LinearLayoutManager(context!!)
-
+     if(viewModel.GetSize()==0){
+         confirmOrder.visibility = View.GONE
+     }else{
+         confirmOrder.visibility = View.VISIBLE
+     }
 
 
      confirmOrder.setOnClickListener {

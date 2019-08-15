@@ -18,20 +18,19 @@ class HomeViewModel(private val homeController: HomeController) : ScopedViewMode
     }
     fun RemoveProduct(id: Int) {
         addcart.removeAt(id)
-
-
     }
     fun GetPrice():BigDecimal{
         return  addcart.sumByDouble { it.price}.toBigDecimal()
     }
     fun  getProduct(): MutableList<Products> {
         return addcart
-
+    }
+    fun GetSize():Int{
+        return  addcart.size
     }
     fun getUsers(){
         launchWithLoad({
             homeController.getUsers()
-
         }){}
     }
 
