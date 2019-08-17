@@ -28,8 +28,8 @@ class cartAdapter(val phones: List<Products>,  val clickListener: (Int) -> Unit)
         holder.view.price_cart.text = movie.price.toString()
 
        holder.view.imageView4.setOnClickListener {
-           clickListener (position)
-           notifyItemRemoved(position)
+           clickListener (holder.adapterPosition)
+           notifyItemRemoved(holder.adapterPosition)
        }
         //  holder.view.textViewType.text = movie.type
         //  description
