@@ -3,6 +3,7 @@ package com.example.phone_app.UI
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,11 @@ import com.example.phone_app.Profile
 import com.example.phone_app.R
 import com.example.phone_app.Shop
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.R.menu
+import android.app.SearchManager
+import android.view.MenuInflater
+import android.widget.SearchView
+
 
 class MainViewActivity : AppCompatActivity() {
     companion object {
@@ -53,6 +59,18 @@ class MainViewActivity : AppCompatActivity() {
 
 
         navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+
+        inflater.inflate(R.menu.actionbar_nav_menu, menu)
+        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        (menu!!.findItem(R.id.app_bar_search).actionView as SearchView).apply {
+            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+        }
+     
+        return true
     }
 
     private fun loadFragment(itemId: Int) {
