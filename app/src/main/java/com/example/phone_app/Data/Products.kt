@@ -23,7 +23,9 @@ data class Products(
     @SerializedName("price")
     val price: Double,
     @SerializedName("Picture")
-    val picture: String
+    val picture: String,
+    @SerializedName("description")
+    val description: String
 
 )
 
